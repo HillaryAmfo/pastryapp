@@ -12,19 +12,35 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0; // For BottomNavigationBar active tab
-  final List<String> categories = ["Cakes", "Cookies", "Pies", "Drinks", "Specials"];
+  final List<String> categories = [
+    "Cakes",
+    "Cookies",
+    "Pies",
+    "Drinks",
+    "Specials"
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Pastry Delight'),
+        leading: Container(
+          margin: const EdgeInsets.all(12),
+          width: 30,
+          height: 30,
+          child: const CircleAvatar(
+            backgroundImage: NetworkImage(
+                'https://static-cse.canva.com/blob/1858348/1600w-B-cRyoh7b98.jpg'),
+          ),
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.shopping_cart),
             onPressed: () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const ShoppingCartScreen()),
+              MaterialPageRoute(
+                  builder: (context) => const ShoppingCartScreen()),
             ),
           ),
         ],
@@ -78,7 +94,8 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Row(
                 children: categories.map((category) {
                   return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0, vertical: 8.0),
                     child: Chip(
                       label: Text(category),
                       backgroundColor: Colors.orange.shade50,
@@ -97,16 +114,19 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             ListView.builder(
-              physics: const NeverScrollableScrollPhysics(), // Disable scrolling for ListView inside ScrollView
+              physics:
+                  const NeverScrollableScrollPhysics(), // Disable scrolling for ListView inside ScrollView
               shrinkWrap: true,
               itemCount: 10,
               itemBuilder: (context, index) {
                 return Card(
                   elevation: 3,
-                  margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
                   child: ListTile(
                     leading: CircleAvatar(
-                      backgroundImage: AssetImage('assets/images/food_$index.jpg'), // Placeholder for food images
+                      backgroundImage: AssetImage(
+                          'assets/images/food_$index.jpg'), // Placeholder for food images
                       radius: 30,
                     ),
                     title: Text('Food Item #$index'),
@@ -114,7 +134,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     trailing: const Icon(Icons.arrow_forward),
                     onTap: () => Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const ProductDetailsScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => const ProductDetailsScreen()),
                     ),
                   ),
                 );
@@ -136,20 +157,25 @@ class _HomeScreenState extends State<HomeScreen> {
           if (index == 1) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const ShoppingCartScreen()),
+              MaterialPageRoute(
+                  builder: (context) => const ShoppingCartScreen()),
             );
           } else if (index == 2) {
             // Navigate to Menu Screen when menu icon is tapped
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const MenuScreen()), // Added navigation to MenuScreen
+              MaterialPageRoute(
+                  builder: (context) =>
+                      MenuScreen()), // Added navigation to MenuScreen
             );
           }
         },
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Cart'),
-          BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'Menu'), // Added menu button here
+          BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_cart), label: 'Cart'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.menu), label: 'Menu'), // Added menu button here
         ],
       ),
     );

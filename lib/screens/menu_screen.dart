@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MenuScreen extends StatelessWidget {
-  const MenuScreen({super.key});
+  MenuScreen({super.key});
 
   // Sample data for the menu categories and items
   final Map<String, List<String>> categories = {
